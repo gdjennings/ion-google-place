@@ -29,7 +29,7 @@ angular.module('ion-google-place', [])
                   '<i class="icon ion-ios7-search placeholder-icon"></i>',
                   '<input class="google-place-search" type="search" ng-model="searchQuery" placeholder="">',
                   '</label>',
-                  '<button class="button button-clear">',
+                  '<button class="button button-clear ng-click="onCancel()">',
                   'Cancel',
                   '</button>',
                   '</div>',
@@ -116,7 +116,10 @@ angular.module('ion-google-place', [])
                   var onCancel = function (e) {
                      scope.searchQuery = '';
                      $ionicBackdrop.release();
+                     scope.locations = [];
                      el.element.css('display', 'none');
+                     ngModel.$setViewValue('');
+                     ngModel.$render();
                   };
 
                   element.bind('click', onClick);
